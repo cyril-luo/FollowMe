@@ -1,0 +1,17 @@
+local.properties
+
+.gradle/*
+.idea/*
+build/*
+app/app-release.apk
+
+facebook/build/*
+volley/build/*
+volley/local.properties
+
+server/.idea/*
+server/node_modules/*
+server/public/image/*
+server/public/tmp/*
+
+.DS_Store
