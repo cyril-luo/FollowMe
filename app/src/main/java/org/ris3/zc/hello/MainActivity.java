@@ -1,7 +1,5 @@
 package org.ris3.zc.hello;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +12,8 @@ import org.json.JSONObject;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.ris3.zc.hello.AppConfig;
+import com.facebook.FacebookSdk;
+import com.facebook.share.widget.LikeView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LikeView likeView = (LikeView) findViewById(R.id.like_view);
+        likeView.setObjectIdAndType(
+                "https://www.facebook.com/FacebookDevelopers",
+                LikeView.ObjectType.PAGE);
 
         Button followBtn = (Button)findViewById(R.id.button);
         followBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private void sendFollow(String msg) {
 
         int fromId = 0;
+
         followId += 1;
-        
+
         Log.d(TAG, "Send Follow Msg:" + msg);
         if (msg == null) {
             return;
@@ -90,18 +94,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onFollowSend(JSONObject followResp) {
-        int res = 0;
+        int res = -1;
 
         try {
             if (followResp != null)
                 res = followResp.getInt("result");
-            else
-                res = -1;
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        Log.d(TAG, "onFollowSend succeed! res = " + res);
+        if (res >= 0)
+            Log.d(TAG, "onFollowSend succeed! res = " + res);
+        else
+            Log.d(TAG, "onFollowSend failed! res = " + res);
 
         return;
     }

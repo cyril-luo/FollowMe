@@ -24,9 +24,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Angry Bird"
+        android:id="@+id/txtView"
         android:layout_below="@+id/imageView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp" />
+
+    <com.facebook.share.widget.LikeView
+        android:id="@+id/like_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"/>
 
     <Button
         android:text="Follow"
