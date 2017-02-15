@@ -17,6 +17,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'src/main/libs'
+            jni.srcDirs = [];
+        }
+    }
+}
+
+
+task ndkBuild(type: Exec, description: "Compile JNI souce via NDK") {
+    commandLine 'ndk-build', '-C', file('src/main/').absolutePath, "APP_BUILD_SCRIPT=jni/Android.mk"
+}
+
+task ndkBuildClean(type: Exec, description: "Clean JNI object files") {
+    commandLine 'ndk-build', '-C', file('src/main/jni').absolutePath, "clean"
+}
+
+clean.dependsOn 'ndkBuildClean'
+
+tasks.withType(org.gradle.api.tasks.compile.JavaCompile) {
+    compileTask -> compileTask.dependsOn ndkBuild
 }
 
 dependencies {
