@@ -32,6 +32,8 @@ public class TeetestActivity extends AppCompatActivity {
                 VButton.initAttestation();
                 //capture Button
                 VButton.regAttestationView(0,0,0,0);
+
+                //for test
             }
         });
 
@@ -71,7 +73,9 @@ public class TeetestActivity extends AppCompatActivity {
                     public void onSuccess() {
                         // App code
                         VButton vb = new VButton();
-                        vb.CheckInfo();
+                        //vb.CheckInfo();
+                        vb.getRSASign();
+                        vb.RSACheck();
                         //Log.d(TAG, "Check Success !") ;
                     }
                     @Override
