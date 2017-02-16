@@ -15,7 +15,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -26,7 +25,7 @@ import com.facebook.login.widget.LoginButton;
 public class LoginActivity extends AppCompatActivity {
     final String TAG = "LoginActivity";
     CallbackManager callbackManager;
-    Button loginBtn,cancelBtn;
+    Button loginBtn,cancelBtn,testBtn;
     LoginButton loginButton;
     EditText nameTxt, passwdTxt;
 
@@ -47,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         passwdTxt = (EditText)findViewById(R.id.passwdTxt);
 
         cancelBtn = (Button)findViewById(R.id.cancelBtn);
+        testBtn = (Button)findViewById(R.id.open);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +67,71 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, TeetestActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
+        /*
+        //test preview
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VButton vb = new VButton();
+                // call VButton preview API to verify this follow event .
+                vb.attestPreview(new VButton.VButtonCallback1() {
+                    @Override
+                    public void onSend() {
+                        // App code
+                        //sendFollow("follow" , verifyResult ) ;
+                        Log.d(TAG, "sendFollow now ... !") ;
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d(TAG, "user cancel the operation !") ;
+                    }
+                });
+                //for evaluation
+
+                //vb.doSend();
+                //vb.doCancel();
+                vb.check_preview();
+            }
+        });
+        */
+        //test view
+        /*
+        VButton.regAttestationView(0,0,0,0);
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VButton vb = new VButton();
+
+                // call VButton API to verify this follow event .
+                vb.attestView(new VButton.VButtonCallback2() {
+                    @Override
+                    public void onSuccess() {
+                        // App code
+                        Log.d(TAG, "Check Success !") ;
+                    }
+
+                    @Override
+                    public void onError() {
+                        // handle error
+                        Log.d(TAG, "follow button : VButton verify failed !");
+                    }
+                });
+
+                vb.doSuccess();
+                vb.doError();
+            }
+        });
+        */
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

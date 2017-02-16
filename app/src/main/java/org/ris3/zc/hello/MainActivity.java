@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.FacebookSdk;
 import com.facebook.share.widget.LikeView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     final String TAG = "MainActivity";
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         followBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String msg = "follow";
                 sendFollow(msg);
             }
